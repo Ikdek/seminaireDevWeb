@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Nova+Square&display=swap');
+#background-video {
+    height: 100vh;
+    width: 100vw;
+    object-fit: cover;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+    opacity: 0.9;
+}
+.player{
+    display: flex;
+    justify-content: space-around;
+}
+.player1{
+    color: beige;
+}
+.player2{
+    color: darkred;
+}
+img{
+    width: 400px;
+}
+.container{
+    margin: 0;
+    font-family: 'Nova Square', sans-serif;
+}
+#title{
+    display: flex;
+    justify-content: space-around;
+    color: aquamarine;
+}

@@ -15,7 +15,9 @@ function submit() {
     var inputValue = parseInt(input.value);
 
     numberGuess += 1;
-    if (inputValue == randomPrice) {
+    if (isNaN(inputValue)) {
+        affich.innerText = "Faut rentrer une valeur ducon";
+    }else if (inputValue == randomPrice) {
         affich.innerText = `Vous avez trouver ! ${randomPrice} etait bien le juste prix ! Vous l'avez devinez en ${numberGuess} d'essai soit un taux de réussite de ${Math.floor(1 / numberGuess * 100)} % Pour ${randomGuess}`
     } else if (inputValue < randomPrice) {
         affich.innerText = "C'est Plus";
@@ -51,7 +53,6 @@ var randomPrice = prix[randomGuess];
 var photo = document.querySelector("#myImage");
 photo.src = `${randomGuess}.png`;
 
-affich.innerText = randomGuess
 
 
 
@@ -65,3 +66,4 @@ affich.innerText = randomGuess
 
 submitButton.addEventListener("click", submit);
 console.log(randomGuess);
+
