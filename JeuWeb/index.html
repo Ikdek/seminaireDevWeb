@@ -1,27 +1,79 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FFX</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <video id="background-video" autoplay loop muted>
         <source src="Background.mp4" type="video/mp4">
     </video>
+    <audio id="audioPlayer" loop autoplay>
+        <source src="battlesong.mp3" type="audio/mp3" id="song">
+    </audio>
+
+
+
     <div class="container">
         <h1 id="title">Final Fantasy X V3</h1>
+        <h1 id="start"><button>Une petite partie ?</button></h1>
         <div class="player">
             <div class="player1">
                 <h2 id="playerName1"></h2>
                 <img src="player1Model.png" alt="">
-                <h2 id="hpPlayer1"></h2>
+                <div class="player1Bar">
+                    <h2 id="hpPlayer1"></h2>
+                    <h2 id="coinsPlayer1"></h2>
+                </div>
+                <div id="action1">
+                    <button class="player1Action" id="attack1">Attack</button>
+                    <button class="player1Action" id="items1">Items</button>
+                    <button class="player1Action" id="shop1">Shop</button>
+                </div>
+                <div class="inventory" id="inventoryPlayer1" style="display: none;">
+                    <!-- Utilisez les mêmes boutons pour les objets dans le menu "Shop" et le menu "Items" -->
+                    <button class="player1Action itemButton" id="potions1Button">Potions: <span
+                            id="potions1Count">0</span></button>
+                    <button class="player1Action itemButton" id="bouclier1Button">Bouclier: <span
+                            id="bouclier1Count">0</span></button>
+                </div>
+                <div id="shopButtons1" style="display: none;">
+                    <button class="player1Action" id="potions1">Potions</button>
+                    <button class="player1Action" id="bouclier1">Bouclier</button>
+                    <button class="player1Action" id="exit">Exit</button>
+                </div>
+
+
             </div>
+            <h1 id="round"></h1>
             <div class="player2">
                 <h2 id="playerName2"></h2>
                 <img src="player2Model.png" alt="">
-                <h2 id="hpPlayer2"></h2>
+                <div class="player2Bar">
+                    <h2 id="hpPlayer2"></h2>
+                    <h2 id="coinsPlayer2"></h2>
+                </div>
+                <div id="action2">
+                    <button class="player2Action" id="attack2">Attack</button>
+                    <button class="player2Action" id="items2">Items</button>
+                    <button class="player2Action" id="shop2">Shop</button>
+                </div>
+                <div class="inventory" id="inventoryPlayer2" style="display: none;">
+                    <!-- Utilisez les mêmes boutons pour les objets dans le menu "Shop" et le menu "Items" -->
+                    <button class="player2Action itemButton" id="potions2Button">Potions: <span
+                            id="potions2Count">0</span></button>
+                    <button class="player2Action itemButton" id="bouclier2Button">Bouclier: <span
+                            id="bouclier2Count">0</span></button>
+                </div>
+                <div id="shopButtons2" style="display: none;">
+                    <button class="player2Action" id="potions2">Potions</button>
+                    <button class="player2Action" id="bouclier2">Bouclier</button>
+                    <button class="player2Action" id="exit">Exit</button>
+                </div>
             </div>
         </div>
     </div>
@@ -29,4 +81,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>

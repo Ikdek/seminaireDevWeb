@@ -1,7 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Nova+Square&display=swap');
+
+body {
+    font-family: 'Nova Square', sans-serif;
+    margin: 0;
+    width: 100%;
+}
+
 #background-video {
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     object-fit: cover;
     position: fixed;
     left: 0;
@@ -11,25 +18,194 @@
     z-index: -1;
     opacity: 0.9;
 }
-.player{
+
+.player {
     display: flex;
     justify-content: space-around;
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 100%;
+    margin: 0 auto;
 }
-.player1{
+
+
+.player1 {
+    align-items: center;
     color: beige;
+    width: 750px;
+    text-align: center;
 }
-.player2{
+
+.player2 {
+    align-items: center;
     color: darkred;
+    width: 750px;
+    text-align: center;
 }
-img{
-    width: 400px;
+
+img {
+    width: 95%;
+    height: auto;
 }
-.container{
+
+.container {
     margin: 0;
-    font-family: 'Nova Square', sans-serif;
+
 }
-#title{
+
+#title {
     display: flex;
     justify-content: space-around;
-    color: aquamarine;
+    font-size: 5rem;
+    color: darkblue;
+}
+
+#start,
+#start button {
+    display: flex;
+    justify-content: space-around;
+    font-size: 5rem;
+    border-radius: 25px;
+    width: 100%;
+    height: 300px;
+    color: darkgoldenrod;
+}
+
+#round {
+    position: fixed;
+    text-align: center;
+}
+
+button {
+    background: none;
+    border: none;
+}
+
+/* 
+██████╗ ██╗      █████╗ ██╗   ██╗███████╗██████╗      ██╗
+██╔══██╗██║     ██╔══██╗╚██╗ ██╔╝██╔════╝██╔══██╗    ███║
+██████╔╝██║     ███████║ ╚████╔╝ █████╗  ██████╔╝    ╚██║
+██╔═══╝ ██║     ██╔══██║  ╚██╔╝  ██╔══╝  ██╔══██╗     ██║
+██║     ███████╗██║  ██║   ██║   ███████╗██║  ██║     ██║
+╚═╝     ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝     ╚═╝
+                                                          */
+
+.player1Action {
+    margin: 10px auto;
+    width: 250px;
+    letter-spacing: 2px;
+    border-radius: 8px;
+    font-family: 'Skranji', cursive;
+    color: #ffc000;
+    font-size: 18px;
+    font-weight: 400;
+    text-shadow: 0 1px 3px #000;
+    text-align: center;
+    padding: 10px 0;
+    background: radial-gradient(circle, #8b0000, #8b0000);
+    border-top: 4px ridge #ffb000;
+    border-left: 4px groove #ffb000;
+    border-right: 4px ridge #ffb000;
+    border-bottom: 4px groove #ffb000;
+    box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3);
+}
+
+.player1Action:hover {
+    background: radial-gradient(circle, #e52b2b, #8b0000);
+    box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+}
+
+.player1Action:active {
+    background: radial-gradient(circle, #ec6a6a, #e52b2b);
+    box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2)
+}
+
+.player1Bar {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+}
+
+/* 
+██████╗ ██╗      █████╗ ██╗   ██╗███████╗██████╗     ██████╗ 
+██╔══██╗██║     ██╔══██╗╚██╗ ██╔╝██╔════╝██╔══██╗    ╚════██╗
+██████╔╝██║     ███████║ ╚████╔╝ █████╗  ██████╔╝     █████╔╝
+██╔═══╝ ██║     ██╔══██║  ╚██╔╝  ██╔══╝  ██╔══██╗    ██╔═══╝ 
+██║     ███████╗██║  ██║   ██║   ███████╗██║  ██║    ███████╗
+╚═╝     ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝    ╚══════╝
+                                                              */
+
+.player2Action {
+    margin: 10px auto;
+    width: 250px;
+    letter-spacing: 2px;
+    border-radius: 8px;
+    font-family: 'Skranji', cursive;
+    color: #ffc000;
+    font-size: 18px;
+    font-weight: 400;
+    text-shadow: 0 1px 3px #000;
+    text-align: center;
+    padding: 10px 0;
+    background: radial-gradient(circle, #00388b, #00388b);
+    border-top: 4px ridge #ffb000;
+    border-left: 4px groove #ffb000;
+    border-right: 4px ridge #ffb000;
+    border-bottom: 4px groove #ffb000;
+    box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3);
+}
+
+.player2Action:hover {
+    background: radial-gradient(circle, #00388b, #00388b);
+    box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+}
+
+.player2Action:active {
+    background: radial-gradient(circle, #00388b, #00388b);
+    box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2)
+}
+
+.player2Bar {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+}
+
+
+.itemButton {
+    margin: 10px auto;
+    width: 250px;
+    letter-spacing: 2px;
+    border-radius: 8px;
+    font-family: 'Skranji', cursive;
+    color: #ffc000;
+    font-size: 18px;
+    font-weight: 400;
+    text-shadow: 0 1px 3px #000;
+    text-align: center;
+    padding: 10px 0;
+    background: radial-gradient(circle, #8b0000, #8b0000);
+    border-top: 4px ridge #ffb000;
+    border-left: 4px groove #ffb000;
+    border-right: 4px ridge #ffb000;
+    border-bottom: 4px groove #ffb000;
+    box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3);
+}
+
+.itemButton:hover {
+    background: radial-gradient(circle, #e52b2b, #8b0000);
+    box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+}
+
+.itemButton:active {
+    background: radial-gradient(circle, #ec6a6a, #e52b2b);
+    box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2)
+}
+
+button {
+    color: beige;
+    font-size: larger;
+    cursor: pointer;
 }
