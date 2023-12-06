@@ -1,83 +1,84 @@
 @import url('https://fonts.googleapis.com/css2?family=Nova+Square&display=swap');
 
 body {
-    font-family: 'Nova Square', sans-serif;
-    margin: 0;
-    width: 100%;
+  font-family: 'Nova Square', sans-serif;
+  margin: 0;
+  width: 100%;
 }
 
 #background-video {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    z-index: -1;
-    opacity: 0.9;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+  opacity: 0.9;
 }
 
 .player {
-    display: flex;
-    justify-content: space-around;
-    background-color: rgba(0, 0, 0, 0.8);
-    width: 100%;
-    margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  margin: 0 auto;
 }
 
 
 .player1 {
-    align-items: center;
-    color: beige;
-    width: 750px;
-    text-align: center;
+  align-items: center;
+  color: beige;
+  width: 600px;
+  text-align: center;
 }
 
 .player2 {
-    align-items: center;
-    color: darkred;
-    width: 750px;
-    text-align: center;
+  align-items: center;
+  color: darkred;
+  width: 600px;
+  text-align: center;
 }
 
 img {
-    width: 95%;
-    height: auto;
+  width: 100%;
+  height: auto;
 }
 
 .container {
-    margin: 0;
+  margin: 0;
 
 }
 
 #title {
-    display: flex;
-    justify-content: space-around;
-    font-size: 5rem;
-    color: darkblue;
+  display: flex;
+  justify-content: space-around;
+  font-size: 5rem;
+  color: darkblue;
 }
 
 #start,
 #start button {
-    display: flex;
-    justify-content: space-around;
-    font-size: 5rem;
-    border-radius: 25px;
-    width: 100%;
-    height: 300px;
-    color: darkgoldenrod;
+  display: flex;
+  justify-content: space-around;
+  font-size: 5rem;
+  border-radius: 25px;
+  width: 100%;
+  height: 300px;
+  color: darkgoldenrod;
 }
 
 #round {
-    position: fixed;
-    text-align: center;
+  position: fixed;
+  text-align: center;
 }
 
 button {
-    background: none;
-    border: none;
+  background: none;
+  border: none;
 }
 
 /* 
@@ -90,40 +91,40 @@ button {
                                                           */
 
 .player1Action {
-    margin: 10px auto;
-    width: 250px;
-    letter-spacing: 2px;
-    border-radius: 8px;
-    font-family: 'Skranji', cursive;
-    color: #ffc000;
-    font-size: 18px;
-    font-weight: 400;
-    text-shadow: 0 1px 3px #000;
-    text-align: center;
-    padding: 10px 0;
-    background: radial-gradient(circle, #8b0000, #8b0000);
-    border-top: 4px ridge #ffb000;
-    border-left: 4px groove #ffb000;
-    border-right: 4px ridge #ffb000;
-    border-bottom: 4px groove #ffb000;
-    box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3);
+  margin: 10px auto;
+  width: 250px;
+  letter-spacing: 2px;
+  border-radius: 8px;
+  font-family: 'Skranji', cursive;
+  color: #ffc000;
+  font-size: 18px;
+  font-weight: 400;
+  text-shadow: 0 1px 3px #000;
+  text-align: center;
+  padding: 10px 0;
+  background: radial-gradient(circle, #8b0000, #8b0000);
+  border-top: 4px ridge #ffb000;
+  border-left: 4px groove #ffb000;
+  border-right: 4px ridge #ffb000;
+  border-bottom: 4px groove #ffb000;
+  box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3);
 }
 
 .player1Action:hover {
-    background: radial-gradient(circle, #e52b2b, #8b0000);
-    box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2);
-    cursor: pointer;
+  background: radial-gradient(circle, #e52b2b, #8b0000);
+  box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2);
+  cursor: pointer;
 }
 
 .player1Action:active {
-    background: radial-gradient(circle, #ec6a6a, #e52b2b);
-    box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2)
+  background: radial-gradient(circle, #ec6a6a, #e52b2b);
+  box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2)
 }
 
 .player1Bar {
-    display: flex;
-    flex-flow: row;
-    justify-content: space-between;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
 }
 
 /* 
@@ -136,197 +137,244 @@ button {
                                                               */
 
 .player2Action {
-    margin: 10px auto;
-    width: 250px;
-    letter-spacing: 2px;
-    border-radius: 8px;
-    font-family: 'Skranji', cursive;
-    color: #ffc000;
-    font-size: 18px;
-    font-weight: 400;
-    text-shadow: 0 1px 3px #000;
-    text-align: center;
-    padding: 10px 0;
-    background: radial-gradient(circle, #00388b, #00388b);
-    border-top: 4px ridge #ffb000;
-    border-left: 4px groove #ffb000;
-    border-right: 4px ridge #ffb000;
-    border-bottom: 4px groove #ffb000;
-    box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3);
+  margin: 10px auto;
+  width: 250px;
+  letter-spacing: 2px;
+  border-radius: 8px;
+  font-family: 'Skranji', cursive;
+  color: #ffc000;
+  font-size: 18px;
+  font-weight: 400;
+  text-shadow: 0 1px 3px #000;
+  text-align: center;
+  padding: 10px 0;
+  background: radial-gradient(circle, #00388b, #00388b);
+  border-top: 4px ridge #ffb000;
+  border-left: 4px groove #ffb000;
+  border-right: 4px ridge #ffb000;
+  border-bottom: 4px groove #ffb000;
+  box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3);
 }
 
 .player2Action:hover {
-    background: radial-gradient(circle, #00388b, #00388b);
-    box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2);
-    cursor: pointer;
+  background: radial-gradient(circle, #00388b, #00388b);
+  box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2);
+  cursor: pointer;
 }
 
 .player2Action:active {
-    background: radial-gradient(circle, #00388b, #00388b);
-    box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2)
+  background: radial-gradient(circle, #00388b, #00388b);
+  box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2)
 }
 
 .player2Bar {
-    display: flex;
-    flex-flow: row;
-    justify-content: space-between;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
 }
 
 
 .itemButton {
-    margin: 10px auto;
-    width: 250px;
-    letter-spacing: 2px;
-    border-radius: 8px;
-    font-family: 'Skranji', cursive;
-    color: #ffc000;
-    font-size: 18px;
-    font-weight: 400;
-    text-shadow: 0 1px 3px #000;
-    text-align: center;
-    padding: 10px 0;
-    background: radial-gradient(circle, #8b0000, #8b0000);
-    border-top: 4px ridge #ffb000;
-    border-left: 4px groove #ffb000;
-    border-right: 4px ridge #ffb000;
-    border-bottom: 4px groove #ffb000;
-    box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3);
+  margin: 10px auto;
+  width: 200px;
+  letter-spacing: 2px;
+  border-radius: 8px;
+  font-family: 'Skranji', cursive;
+  color: #ffc000;
+  font-size: 18px;
+  font-weight: 400;
+  text-shadow: 0 1px 3px #000;
+  text-align: center;
+  padding: 10px 0;
+  background: radial-gradient(circle, #8b0000, #8b0000);
+  border-top: 4px ridge #ffb000;
+  border-left: 4px groove #ffb000;
+  border-right: 4px ridge #ffb000;
+  border-bottom: 4px groove #ffb000;
+  box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3);
 }
 
 .itemButton:hover {
-    background: radial-gradient(circle, #e52b2b, #8b0000);
-    box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2);
-    cursor: pointer;
+  background: radial-gradient(circle, #e52b2b, #8b0000);
+  box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2);
+  cursor: pointer;
 }
 
 .itemButton:active {
-    background: radial-gradient(circle, #ec6a6a, #e52b2b);
-    box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2)
+  background: radial-gradient(circle, #ec6a6a, #e52b2b);
+  box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2)
 }
 
 .itemButton2 {
-    margin: 10px auto;
-    width: 250px;
-    letter-spacing: 2px;
-    border-radius: 8px;
-    font-family: 'Skranji', cursive;
-    color: #ffc000;
-    font-size: 18px;
-    font-weight: 400;
-    text-shadow: 0 1px 3px #000;
-    text-align: center;
-    padding: 10px 0;
-    background: radial-gradient(circle, #00388b, #00388b);
-    border-top: 4px ridge #ffb000;
-    border-left: 4px groove #ffb000;
-    border-right: 4px ridge #ffb000;
-    border-bottom: 4px groove #ffb000;
-    box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3);
+  margin: 10px auto;
+  width: 250px;
+  letter-spacing: 2px;
+  border-radius: 8px;
+  font-family: 'Skranji', cursive;
+  color: #ffc000;
+  font-size: 18px;
+  font-weight: 400;
+  text-shadow: 0 1px 3px #000;
+  text-align: center;
+  padding: 10px 0;
+  background: radial-gradient(circle, #00388b, #00388b);
+  border-top: 4px ridge #ffb000;
+  border-left: 4px groove #ffb000;
+  border-right: 4px ridge #ffb000;
+  border-bottom: 4px groove #ffb000;
+  box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3);
 }
 
 .itemButton2:hover {
-    background: radial-gradient(circle, #00388b, #00388b);
-    box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2);
-    cursor: pointer;
+  background: radial-gradient(circle, #00388b, #00388b);
+  box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2);
+  cursor: pointer;
 }
 
 .itemButton2:active {
-    background: radial-gradient(circle, #00388b, #00388b);
-    box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2)
+  background: radial-gradient(circle, #00388b, #00388b);
+  box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2)
 }
 
 button {
-    color: beige;
-    font-size: larger;
-    cursor: pointer;
+  color: beige;
+  font-size: larger;
+  cursor: pointer;
 }
 
 #deadTitle {
-    display: none;
-    text-align: center;
-    font-size: 48px;
-    color: red;
-    background-color: rgba(0, 0, 0, 0.8); 
+  display: none;
+  text-align: center;
+  font-size: 48px;
+  color: red;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
+#round {
+  color: aquamarine;
+}
 
 @keyframes isHit {
-    0%,
-    100% {
-      transform: rotate(0deg);
-      transform-origin: 50% 0;
-    }
-  
-    10% {
-      transform: rotate(2deg);
-    }
-  
-    20%,
-    40%,
-    60% {
-      transform: rotate(-4deg);
-    }
-  
-    30%,
-    50%,
-    70% {
-      transform: rotate(4deg);
-    }
-  
-    80% {
-      transform: rotate(-2deg);
-    }
-  
-    90% {
-      transform: rotate(2deg);
-    }
+
+  0%,
+  100% {
+    transform: rotate(0deg);
   }
 
-.hited{
-    animation: isHit 1s ease-in 0s 1 normal both;
+  10% {
+    transform: rotate(2deg);
+  }
+
+  20%,
+  40%,
+  60% {
+    transform: rotate(-4deg);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: rotate(4deg);
+  }
+
+  80% {
+    transform: rotate(-2deg);
+  }
+
+  90% {
+    transform: rotate(2deg);
+  }
 }
-  
+
+.hited {
+  animation: isHit 0.5s ease-in 0s 1 normal both;
+}
+
 @keyframes isHitShielded {
-    0% {
-      transform: scale(1);
-    }
-  
-    50% {
-      transform: scale(1.1);
-    }
-  
-    100% {
-      transform: scale(1);
-    }
+  0% {
+    transform: scale(1);
   }
-.hitedShield{
-    animation: isHitShielded 1s ease-in 0s 1 normal both;
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
+
+.hitedShield {
+  animation: isHitShielded 0.5s ease-in 0s 1 normal both;
+}
+
 @keyframes isDrinking {
-    0% {
-      transform: rotate(0);
-      transform-origin: top;
-    }
-    100% {
-      transform: rotate(360deg);
-      transform-origin: top;
-    }
+  0% {
+    transform: rotate(0);
+    transform-origin: top;
   }
-.drinked{
-    animation: isDrinking 1s ease-in 0s 1 normal both;
-}  
+
+  100% {
+    transform: rotate(360deg);
+    transform-origin: top;
+  }
+}
+
+.drinked {
+  animation: isDrinking 0.5s ease-in 0s 1 normal both;
+}
+
 @keyframes isShielded {
-    0%,
-    50%,
-    100% {
-      opacity: 1;
-    }
-  
-    25%,
-    75% {
-      opacity: 0;
-    }
+
+  0%,
+  50%,
+  100% {
+    opacity: 1;
   }
-.shielded{
-    animation: isShielded 1s ease-in 0s 1 normal both;
+
+  25%,
+  75% {
+    opacity: 0;
+  }
+}
+
+.shielded {
+  animation: isShielded 0.5s ease-in 0s 1 normal both;
+}
+
+@keyframes isHit1 {
+  0% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(-100px);
+  }
+
+  100% {
+    transform: translateX(100px);
+  }
+}
+
+.hit {
+  animation: isHit1 0.5s ease-in 0s 1 normal both;
+}
+
+
+
+@keyframes isHit2 {
+  0% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(100px);
+  }
+
+  100% {
+    transform: translateX(-100px);
+  }
+}
+.hit2 {
+  animation: isHit2 0.5s ease-in 0s 1 normal both;
 }
