@@ -1,16 +1,24 @@
-var shopButton1ClickListener = function () {
-    displayShopButtons("player1");
-};
-
-var shopButton2ClickListener = function () {
-    displayShopButtons("player2");
-};
-
-var exitButtonClickListener = function () {
-    exitShopMode();
-};
-
 window.onload = function () {
+
+
+    // ██████╗ ███████╗██████╗ ██╗   ██╗ ██████╗ 
+    // ██╔══██╗██╔════╝██╔══██╗██║   ██║██╔════╝ 
+    // ██║  ██║█████╗  ██████╔╝██║   ██║██║  ███╗
+    // ██║  ██║██╔══╝  ██╔══██╗██║   ██║██║   ██║
+    // ██████╔╝███████╗██████╔╝╚██████╔╝╚██████╔╝
+    // ╚═════╝ ╚══════╝╚═════╝  ╚═════╝  ╚═════╝ 
+
+    var shopButton1ClickListener = function () {
+        displayShopButtons("player1");
+    };
+
+    var shopButton2ClickListener = function () {
+        displayShopButtons("player2");
+    };
+
+    var exitButtonClickListener = function () {
+        exitShopMode();
+    };
 
     var displayNamePlayer1, displayNamePlayer2;
     var start, title, status;
@@ -20,12 +28,12 @@ window.onload = function () {
     var action1, action2;
     var inv1, inv2;
     var side, shopButtons1, shopButtons2;
-    var player1Def, player2Def; 
-    var playerDpsRate1 = 1; 
+    var player1Def, player2Def;
+    var playerDpsRate1 = 1;
     var playerDpsRate2 = 1;
     var potionCost = 30;
     var epeeCost = 50;
-    
+
     //  ██████╗ ██╗   ██╗███████╗██████╗ ██╗   ██╗███████╗███████╗██╗     ███████╗ ██████╗████████╗ ██████╗ ██████╗ 
     // ██╔═══██╗██║   ██║██╔════╝██╔══██╗╚██╗ ██╔╝██╔════╝██╔════╝██║     ██╔════╝██╔════╝╚══██╔══╝██╔═══██╗██╔══██╗
     // ██║   ██║██║   ██║█████╗  ██████╔╝ ╚████╔╝ ███████╗█████╗  ██║     █████╗  ██║        ██║   ██║   ██║██████╔╝
@@ -116,11 +124,19 @@ window.onload = function () {
         displayItemsButtons("player2");
     });
 
-    var exitButton = document.querySelector(".exitShop");
+    var exitButton = document.querySelector(".exitShop1");
     exitButton.addEventListener("click", function () {
         exitShopMode();
     });
-    var exitItems = document.querySelector(".exitItems");
+    var exitButton = document.querySelector(".exitShop2");
+    exitButton.addEventListener("click", function () {
+        exitShopMode();
+    });
+    var exitItems = document.querySelector(".exitItems1");
+    exitItems.addEventListener("click", function () {
+        exitShopMode();
+    });
+    var exitItems = document.querySelector(".exitItems2");
     exitItems.addEventListener("click", function () {
         exitShopMode();
     });
@@ -166,6 +182,9 @@ window.onload = function () {
             player1Def = false;
             playerDpsRate2 = 1;
             model2.classList.remove("hited")
+            model2.classList.remove("hitedShield")
+            model2.classList.remove("drinked")
+            model2.classList.remove("shielded")
         } else {
             action1.style.display = "none";
             action2.style.display = "flex";
@@ -174,6 +193,9 @@ window.onload = function () {
             player2Def = false;
             playerDpsRate1 = 1;
             model1.classList.remove("hited")
+            model1.classList.remove("hitedShield")
+            model1.classList.remove("drinked")
+            model1.classList.remove("shielded")
         }
     }
 
@@ -206,10 +228,12 @@ window.onload = function () {
                 model2.classList.add("hitedShield")
                 myRounds();
             } else {
-                hpPlayer2 -= randomAtt()*playerDpsRate1;
+                hpPlayer2 -= randomAtt() * playerDpsRate1;
                 displayHpPlayer2.innerText = hpPlayer2 + " / 100❤️";
                 side = false;
                 model2.classList.add("hited")
+                coinsPlayer1 += 10;
+                displaycoinsPlayer1.innerText = coinsPlayer1 + "🪙";
                 checkGameOver();
             }
 
@@ -225,10 +249,12 @@ window.onload = function () {
                 model1.classList.add("hitedShield")
                 myRounds();
             } else {
-                hpPlayer1 -= randomAtt()*playerDpsRate2;
+                hpPlayer1 -= randomAtt() * playerDpsRate2;
                 displayHpPlayer1.innerText = hpPlayer1 + " / 100❤️";
                 side = true;
                 model1.classList.add("hited")
+                coinsPlayer2 += 10;
+                displaycoinsPlayer2.innerText = coinsPlayer2 + "🪙";
                 checkGameOver();
             }
 
@@ -252,7 +278,7 @@ window.onload = function () {
             coinsPlayer2 += 10;
             displaycoinsPlayer2.innerText = coinsPlayer2 + "🪙";
             side = true;
-            model1.classList.add("hitedShield")
+            model2.classList.add("hitedShield")
             myRounds();
         }
     }
@@ -292,8 +318,7 @@ window.onload = function () {
             } else {
                 displaycoinsPlayer2.innerText = currentPlayerCoins + "🪙";
             }
-            inventory["Potions"] += 1;
-            console.log("Potion achetée! " + player);
+            inventory["Potions"] = inventory["Potions"] + 1;
         } else if (currentPlayerCoins >= epeeCost && item === "Epee") {
             currentPlayerCoins -= epeeCost;
             if (player === "player1") {
@@ -301,8 +326,7 @@ window.onload = function () {
             } else {
                 displaycoinsPlayer2.innerText = currentPlayerCoins + "🪙";
             }
-            inventory["Epee"] += 1;
-            console.log("Epée achetée! " + player);
+            inventory["Epee"] = inventory["Epee"] + 1;
         } else {
             alert("Pas assez de pièces de monnaie.");
         }
@@ -313,7 +337,7 @@ window.onload = function () {
 
     function exitShopMode() {
         removeShopEventListeners();
-    
+
         action1.style.display = (side ? "flex" : "none");
         action2.style.display = (!side ? "flex" : "none");
         shopButtons1.style.display = "none";
@@ -354,36 +378,48 @@ window.onload = function () {
     function useItem(player, item) {
         if (item === "epee") {
             if (player === "player1") {
-                playerDpsRate1 = 2;
-                inv1["Epee"] -= 1 
+                if (inv1["Epee"] > 0) {
+                    playerDpsRate1 = 2;
+                    inv1["Epee"] -= 1;
+                    model1.classList.add("shielded")
+                }
             } else {
-                playerDpsRate2 = 2;
-                inv2["Epee"] -= 1 
+                if (inv2["Epee"] > 0) {
+                    playerDpsRate2 = 2;
+                    inv2["Epee"] -= 1;
+                    model2.classList.add("shielded")
+                }
             }
-        }else if (item == "potion"){
+        } else if (item == "potion") {
             if (player === "player1") {
-                if (hpPlayer1 <= 80){
-                    hpPlayer1 += 20;
-                displayHpPlayer1.innerText = hpPlayer1 + " / 100❤️";
-                inv1["Potions"] -= 1;
-                }else{
-                    hpPlayer1 = 100;
-                    displayHpPlayer1.innerText = hpPlayer1 + " / 100❤️";
-                inv1["Potions"] -= 1;
+                if (inv1["Potions"] > 0) {
+                    if (hpPlayer1 <= 80) {
+                        hpPlayer1 += 20;
+                        displayHpPlayer1.innerText = hpPlayer1 + " / 100❤️";
+                        inv1["Potions"] -= 1;
+                    } else {
+                        hpPlayer1 = 100;
+                        displayHpPlayer1.innerText = hpPlayer1 + " / 100❤️";
+                        inv1["Potions"] -= 1;
+                    }
+                    model1.classList.add("drinked")
                 }
-                
             } else {
-                if (hpPlayer2 <= 80){
-                    hpPlayer2 += 20;
-                displayHpPlayer2.innerText = hpPlayer1 + " / 100❤️";
-                inv2["Potions"] -= 1;
-                }else{
-                    hpPlayer2 = 100;
-                    displayHpPlayer2.innerText = hpPlayer2 + " / 100❤️";
-                inv2["Potions"] -= 1;
+                if (inv2["Potions"] > 0) {
+                    if (hpPlayer2 <= 80) {
+                        hpPlayer2 += 20;
+                        displayHpPlayer2.innerText = hpPlayer1 + " / 100❤️";
+                        inv2["Potions"] -= 1;
+                    } else {
+                        hpPlayer2 = 100;
+                        displayHpPlayer2.innerText = hpPlayer2 + " / 100❤️";
+                        inv2["Potions"] -= 1;
+                    }
+                    model2.classList.add("drinked")
                 }
+
             }
-            }
+        }
         updateButtonsDisplay(player);
     }
     function checkGameOver() {

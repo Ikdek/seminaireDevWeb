@@ -204,6 +204,37 @@ button {
     box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2)
 }
 
+.itemButton2 {
+    margin: 10px auto;
+    width: 250px;
+    letter-spacing: 2px;
+    border-radius: 8px;
+    font-family: 'Skranji', cursive;
+    color: #ffc000;
+    font-size: 18px;
+    font-weight: 400;
+    text-shadow: 0 1px 3px #000;
+    text-align: center;
+    padding: 10px 0;
+    background: radial-gradient(circle, #00388b, #00388b);
+    border-top: 4px ridge #ffb000;
+    border-left: 4px groove #ffb000;
+    border-right: 4px ridge #ffb000;
+    border-bottom: 4px groove #ffb000;
+    box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3);
+}
+
+.itemButton2:hover {
+    background: radial-gradient(circle, #00388b, #00388b);
+    box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+}
+
+.itemButton2:active {
+    background: radial-gradient(circle, #00388b, #00388b);
+    box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2)
+}
+
 button {
     color: beige;
     font-size: larger;
@@ -270,4 +301,32 @@ button {
   }
 .hitedShield{
     animation: isHitShielded 1s ease-in 0s 1 normal both;
+}
+@keyframes isDrinking {
+    0% {
+      transform: rotate(0);
+      transform-origin: top;
+    }
+    100% {
+      transform: rotate(360deg);
+      transform-origin: top;
+    }
+  }
+.drinked{
+    animation: isDrinking 1s ease-in 0s 1 normal both;
+}  
+@keyframes isShielded {
+    0%,
+    50%,
+    100% {
+      opacity: 1;
+    }
+  
+    25%,
+    75% {
+      opacity: 0;
+    }
+  }
+.shielded{
+    animation: isShielded 1s ease-in 0s 1 normal both;
 }
