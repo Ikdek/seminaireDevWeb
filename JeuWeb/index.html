@@ -24,27 +24,26 @@
         <div class="player">
             <div class="player1">
                 <h2 id="playerName1"></h2>
-                <img src="player1Model.png" alt="">
+                <img id="player1Model" src="player1Model.png" alt="">
                 <div class="player1Bar">
                     <h2 id="hpPlayer1"></h2>
                     <h2 id="coinsPlayer1"></h2>
                 </div>
                 <div id="action1">
                     <button class="player1Action" id="attack1">Attack</button>
+                    <button class="player1Action" id="defend1">Defend</button>
                     <button class="player1Action" id="items1">Items</button>
                     <button class="player1Action" id="shop1">Shop</button>
                 </div>
                 <div class="inventory" id="inventoryPlayer1" style="display: none;">
-                    <!-- Utilisez les mêmes boutons pour les objets dans le menu "Shop" et le menu "Items" -->
-                    <button class="player1Action itemButton" id="potions1Button">Potions: <span
-                            id="potions1Count">0</span></button>
-                    <button class="player1Action itemButton" id="bouclier1Button">Bouclier: <span
-                            id="bouclier1Count">0</span></button>
+                    <button class="player1Action itemButton" id="potionsButton1">Potions: <span id="potionsCount1">0</span></button>
+                    <button class="player1Action itemButton" id="epeeButton1">Bouclier: <span id="epeeCount1">0</span></button>
+                    <button class="player1Action exitItems" id="">Exit</button>
                 </div>
                 <div id="shopButtons1" style="display: none;">
                     <button class="player1Action" id="potions1">Potions</button>
-                    <button class="player1Action" id="bouclier1">Bouclier</button>
-                    <button class="player1Action" id="exit">Exit</button>
+                    <button class="player1Action" id="epee1">Epée</button>
+                    <button class="player1Action exitShop" id="">Exit</button>
                 </div>
 
 
@@ -52,30 +51,30 @@
             <h1 id="round"></h1>
             <div class="player2">
                 <h2 id="playerName2"></h2>
-                <img src="player2Model.png" alt="">
+                <img id="player2Model" src="player2Model.png" alt="">
                 <div class="player2Bar">
                     <h2 id="hpPlayer2"></h2>
                     <h2 id="coinsPlayer2"></h2>
                 </div>
                 <div id="action2">
                     <button class="player2Action" id="attack2">Attack</button>
+                    <button class="player2Action" id="defend2">Defend</button>
                     <button class="player2Action" id="items2">Items</button>
                     <button class="player2Action" id="shop2">Shop</button>
                 </div>
                 <div class="inventory" id="inventoryPlayer2" style="display: none;">
-                    <!-- Utilisez les mêmes boutons pour les objets dans le menu "Shop" et le menu "Items" -->
-                    <button class="player2Action itemButton" id="potions2Button">Potions: <span
-                            id="potions2Count">0</span></button>
-                    <button class="player2Action itemButton" id="bouclier2Button">Bouclier: <span
-                            id="bouclier2Count">0</span></button>
+                    <button class="player2Action itemButton" id="potionsButton2">Potions: <span id="potionsCount2">0</span></button>
+                    <button class="player2Action itemButton" id="epeeButton2">Epée: <span id="epeeCount2">0</span></button>
+                    <button class="player2Action exitItems" id="">Exit</button>
                 </div>
                 <div id="shopButtons2" style="display: none;">
                     <button class="player2Action" id="potions2">Potions</button>
-                    <button class="player2Action" id="bouclier2">Bouclier</button>
-                    <button class="player2Action" id="exit">Exit</button>
+                    <button class="player2Action" id="epee2">Epée</button>
+                    <button class="player2Action exitShop" id="">Exit</button>
                 </div>
             </div>
         </div>
+        <h1 id="deadTitle"></h1>
     </div>
 
 

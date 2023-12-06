@@ -209,3 +209,65 @@ button {
     font-size: larger;
     cursor: pointer;
 }
+
+#deadTitle {
+    display: none;
+    text-align: center;
+    font-size: 48px;
+    color: red;
+    background-color: rgba(0, 0, 0, 0.8); 
+}
+
+
+@keyframes isHit {
+    0%,
+    100% {
+      transform: rotate(0deg);
+      transform-origin: 50% 0;
+    }
+  
+    10% {
+      transform: rotate(2deg);
+    }
+  
+    20%,
+    40%,
+    60% {
+      transform: rotate(-4deg);
+    }
+  
+    30%,
+    50%,
+    70% {
+      transform: rotate(4deg);
+    }
+  
+    80% {
+      transform: rotate(-2deg);
+    }
+  
+    90% {
+      transform: rotate(2deg);
+    }
+  }
+
+.hited{
+    animation: isHit 1s ease-in 0s 1 normal both;
+}
+  
+@keyframes isHitShielded {
+    0% {
+      transform: scale(1);
+    }
+  
+    50% {
+      transform: scale(1.1);
+    }
+  
+    100% {
+      transform: scale(1);
+    }
+  }
+.hitedShield{
+    animation: isHitShielded 1s ease-in 0s 1 normal both;
+}
