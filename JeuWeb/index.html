@@ -12,15 +12,16 @@
     <video id="background-video" autoplay loop muted>
         <source src="Background.mp4" type="video/mp4">
     </video>
-    <audio id="audioPlayer" loop autoplay>
-        <source src="battlesong.mp3" type="audio/mp3" id="song">
+    <audio autoplay loop muted>
+        <source src="battlesong.mp3" type="audio/mp3">
     </audio>
+    
 
-
+    <br><br>
 
     <div class="container">
         <h1 id="title">Final Fantasy X V3</h1>
-        
+
         <div class="player">
             <h1 id="round"></h1>
             <div class="player1">
@@ -34,20 +35,13 @@
                     <button class="player1Action" id="attack1">Attack</button>
                     <button class="player1Action" id="defend1">Defend</button>
                     <button class="player1Action" id="items1">Items</button>
-                    <button class="player1Action" id="shop1">Shop</button>
                 </div>
                 <div class="inventory" id="inventoryPlayer1" style="display: none;">
-                    <button class="player1Action potions" id="potionsButton1">Potions: <span id="potionsCount1">0</span></button>
-                    <button class="player1Action Epée" id="epeeButton1">Bouclier: <span id="epeeCount1">0</span></button>
-                    <button class="player1Action exitItems1" id="">Exit</button>
+                    <button class="player1Action potions" id="potionsButton1">Potions: <span
+                            id="potionsCount1">0</span></button>
+                    <button class="player1Action Epée" id="epeeButton1">Epée: <span id="epeeCount1">0</span></button>
+                    <button class="player1Action" id="exitItems1">Exit</button>
                 </div>
-                <div id="shopButtons1" style="display: none;">
-                    <button class="player1Action" id="potions1">Potions</button>
-                    <button class="player1Action" id="epee1">Epée</button>
-                    <button class="player1Action exitShop1" id="">Exit</button>
-                </div>
-
-
             </div>
             <div class="player2">
                 <h2 id="playerName2"></h2>
@@ -60,21 +54,24 @@
                     <button class="player2Action" id="attack2">Attack</button>
                     <button class="player2Action" id="defend2">Defend</button>
                     <button class="player2Action" id="items2">Items</button>
-                    <button class="player2Action" id="shop2">Shop</button>
                 </div>
                 <div class="inventory" id="inventoryPlayer2" style="display: none;">
-                    <button class="player2Action potions" id="potionsButton2">Potions: <span id="potionsCount2">0</span></button>
+                    <button class="player2Action potions" id="potionsButton2">Potions: <span
+                            id="potionsCount2">0</span></button>
                     <button class="player2Action Epée" id="epeeButton2">Epée: <span id="epeeCount2">0</span></button>
-                    <button class="player2Action exitItems2" id="">Exit</button>
-                </div>
-                <div id="shopButtons2" style="display: none;">
-                    <button class="player2Action" id="potions2">Potions</button>
-                    <button class="player2Action" id="epee2">Epée</button>
-                    <button class="player2Action exitShop2" id="">Exit</button>
+                    <button class="player2Action " id="exitItems2">Exit</button>
                 </div>
             </div>
         </div>
-        <h1 id="deadTitle"></h1>
+    </div>
+    <div id="popup">
+        <h3 id="popupTitle"> a sucombé</h3>
+        <p id="popupText">
+            Voulez-vous lancez de nouveau ?
+        </p>
+        <div id="popupAction">
+            <button id="btnRematch">Oui</button>
+        </div>
     </div>
 
 
