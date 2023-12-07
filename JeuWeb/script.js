@@ -14,7 +14,6 @@ class Player {
         this.defending = false;
         this.dpsRate = 1;
         this.inventory = { "Potions": 1, "Epee": 1 };
-        this.model = document.querySelector("#playerModel" + player === player1 ? "1" : "2");
         this.elementClass = "";
     }
 
@@ -44,21 +43,21 @@ class Player {
             } else if (item === "Epee") {
                 target.dpsRate = 2;
             }
+            this.updateInventoryUI();
+            updateUI();
             return true;
         }
         return false;
     }
 
     attack(target) {
-        if (target.defending === false){
+        if (target.defending === false) {
             var damage = this.randomAttack() * this.dpsRate;
             target.receiveDamage(damage);
             this.addCoins(15);
-            this.addElementClass("hit")
-        }else{
+        } else {
             this.addCoins(10);
         }
-        
     }
 
     defend() {
@@ -94,14 +93,45 @@ class Player {
             this.coins -= amount;
         }
     }
-    addElementClass(className) {
-        this.elementClass = className;
-        this.updateUI();
+
+    showInventory() {
+        let previousMenu = document.getElementById("action" + (player1 === currentPlayer ? 1 : 2));
+        previousMenu.style.display = "none";
+        let newMenu = document.getElementById("inventoryPlayer" + (player1 === currentPlayer ? 1 : 2));
+        newMenu.style.display = "flex";
     }
 
     switchTurn() {
         currentPlayer = currentPlayer === player1 ? player2 : player1;
         currentPlayer.defending = false;
+    }
+
+    updateInventoryUI() {
+        let potionsCountElement = document.getElementById(`potionsCount${currentPlayer === player1 ? 1 : 2}`);
+        let epeeCountElement = document.getElementById(`epeeCount${currentPlayer === player1 ? 1 : 2}`);
+
+        potionsCountElement.textContent = currentPlayer.inventory["Potions"];
+        epeeCountElement.textContent = currentPlayer.inventory["Epee"];
+    }
+}
+
+function updateUI() {
+    var hpPlayer1Element = document.getElementById("hpPlayer1");
+    var coinsPlayer1Element = document.getElementById("coinsPlayer1");
+    var hpPlayer2Element = document.getElementById("hpPlayer2");
+    var coinsPlayer2Element = document.getElementById("coinsPlayer2");
+
+    hpPlayer1Element.textContent = player1.hp + "/100❤️";
+    coinsPlayer1Element.textContent = player1.coins + "🪙";
+    hpPlayer2Element.textContent = player2.hp + "/100❤️";
+    coinsPlayer2Element.textContent = player2.coins + "🪙";
+
+    var action1Element = document.getElementById("action1");
+    var action2Element = document.getElementById("action2");
+
+    if (action1Element && action2Element) {
+        action1Element.style.display = currentPlayer === player1 ? "flex" : "none";
+        action2Element.style.display = currentPlayer === player2 ? "flex" : "none";
     }
 }
 
@@ -151,18 +181,38 @@ window.onload = function () {
         updateUI();
     });
 
-    function updateUI() {
-        hpPlayer1Element.textContent = player1.hp + "/100❤️";
-        coinsPlayer1Element.textContent = player1.coins + "🪙";
-        hpPlayer2Element.textContent = player2.hp + "/100❤️";
-        coinsPlayer2Element.textContent = player2.coins + "🪙";
-
-        var action1Element = document.getElementById("action1");
-        var action2Element = document.getElementById("action2");
-
-        if (action1Element && action2Element) {
-            action1Element.style.display = currentPlayer === player1 ? "flex" : "none";
-            action2Element.style.display = currentPlayer === player2 ? "flex" : "none";
+    document.getElementById("items1").addEventListener("click", function () {
+        player1.showInventory();
+        player1.updateInventoryUI();
+        var potionButtons = document.getElementsByClassName("potions");
+        for (var i = 0; i < potionButtons.length; i++) {
+            potionButtons[i].addEventListener("click", function () {
+                player1.useItem("Potions", player2);
+            });
         }
-    }
+
+        var epeeButtons = document.getElementsByClassName("Epée");
+        for (var i = 0; i < epeeButtons.length; i++) {
+            epeeButtons[i].addEventListener("click", function () {
+                player1.useItem("Epee", player2);
+            });
+        }
+    });
+
+    document.getElementById("items2").addEventListener("click", function () {
+        player2.showInventory();
+        player2.updateInventoryUI();
+        var potionButtons = document.getElementsByClassName("potions");
+        for (var i = 0; i < potionButtons.length; i++) {
+            potionButtons[i].addEventListener("click", function () {
+                player2.useItem("Potions", player1);
+            });
+        }
+        var epeeButtons = document.getElementsByClassName("Epée");
+        for (var i = 0; i < epeeButtons.length; i++) {
+            epeeButtons[i].addEventListener("click", function () {
+                player2.useItem("Epee", player1);
+            });
+        }
+    });
 };
