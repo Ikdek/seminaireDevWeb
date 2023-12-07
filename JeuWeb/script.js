@@ -55,22 +55,6 @@ class Player {
             var damage = this.randomAttack() * this.dpsRate;
             target.receiveDamage(damage);
             this.addCoins(15);
-            document.getElementById("playerModel1").classList.add("hit1");
-            setTimeout(() => {
-                document.getElementById("playerModel1").classList.remove("hit1");
-            }, 500);
-
-            if (!player2.defending) {
-                document.getElementById("playerModel2").classList.add("shake");
-                setTimeout(() => {
-                    document.getElementById("playerModel2").classList.remove("shake");
-                }, 500);
-            } else {
-                document.getElementById("playerModel2").classList.add("hitedShield");
-                setTimeout(() => {
-                    document.getElementById("playerModel2").classList.remove("hitedShield");
-                }, 500);
-            }
         } else {
             this.addCoins(10);
         }
@@ -139,11 +123,15 @@ class Player {
 
     checkEndGame() {
         if (this.hp <= 0) {
+            // document.getElementById("background-video").pause();
+            // document.getElementById("audioPlayer").pause();
             allP.style.display = "none";
             document.getElementById("popupTitle").textContent = `${this.name} a succombé !`;
             document.getElementById("popup").style.display = "flex";
         }
     }
+
+
 }
 
 function updateUI() {
@@ -190,24 +178,67 @@ window.onload = function () {
         player1.attack(player2);
         currentPlayer.switchTurn();
         updateUI();
-    });
+        document.getElementById("playerModel1").classList.add("hit1");
+        setTimeout(() => {
+            document.getElementById("playerModel1").classList.remove("hit1");
+        }, 500);
+        if (player2.defending == false){
+            setTimeout(() => {
+                document.getElementById("playerModel2").classList.add("shake");
+            }, 600);
+            setTimeout(() => {
+                document.getElementById("playerModel2").classList.remove("shake");
+            }, 500);
+        }else{
+            setTimeout(() => {
+                document.getElementById("playerModel2").classList.add("hitedShield");
+            }, 600);
+            setTimeout(() => {
+                document.getElementById("playerModel2").classList.remove("shake");
+            }, 500);
+        }
 
+        
+
+        
+        
+    });
+    
     document.getElementById("attack2").addEventListener("click", function () {
         player2.attack(player1);
         currentPlayer.switchTurn();
         updateUI();
-    });
+        document.getElementById("playerModel2").classList.add("hit2");
+        setTimeout(() => {
+            document.getElementById("playerModel2").classList.remove("hit2");
+        }, 500);
 
+        setTimeout(() => {
+            document.getElementById("playerModel1").classList.add("shake");
+        }, 600);
+        setTimeout(() => {
+            document.getElementById("playerModel1").classList.remove("shake");
+        }, 500);
+    });
+    
     document.getElementById("defend1").addEventListener("click", function () {
         player1.defend();
         currentPlayer.switchTurn();
         updateUI();
+        document.getElementById("playerModel1").classList.add("shielded");
+        setTimeout(() => {
+            document.getElementById("playerModel1").classList.remove("shielded");
+        }, 500);
     });
-
+    
     document.getElementById("defend2").addEventListener("click", function () {
         player2.defend();
         currentPlayer.switchTurn();
         updateUI();
+        document.getElementById("playerMode2").classList.add("shielded");
+        setTimeout(() => {
+            document.getElementById("playerModel2").classList.remove("shielded");
+        }, 500);
     });
 
     document.getElementById("items1").addEventListener("click", function () {
@@ -224,14 +255,15 @@ window.onload = function () {
             });
         }
 
-        var epeeButtons = document.getElementsByClassName("epee");
+        var epeeButtons = document.getElementsByClassName("Epée");
         for (var i = 0; i < epeeButtons.length; i++) {
             epeeButtons[i].addEventListener("click", function () {
-                player1.useItem("Epee", player2);
-                document.getElementById("playerModel2").classList.add("hitSword");
+                player1.useItem("Epee", player1);
+                document.getElementById("playerModel1").classList.add("shielded");
                 setTimeout(() => {
-                    document.getElementById("playerModel2").classList.remove("hitSword");
+                    document.getElementById("playerModel1").classList.remove("shielded");
                 }, 500);
+
             });
         }
     });
@@ -249,25 +281,27 @@ window.onload = function () {
                 }, 500);
             });
         }
-
-        var epeeButtons = document.getElementsByClassName("epee");
+        var epeeButtons = document.getElementsByClassName("Epée");
         for (var i = 0; i < epeeButtons.length; i++) {
             epeeButtons[i].addEventListener("click", function () {
-                player2.useItem("Epee", player1);
-                document.getElementById("playerModel1").classList.add("hitSword");
+                player2.useItem("Epee", player2);
+                document.getElementById("playerModel2").classList.add("shielded");
                 setTimeout(() => {
-                    document.getElementById("playerModel1").classList.remove("hitSword");
+                    document.getElementById("playerModel2").classList.remove("shielded");
                 }, 500);
             });
         }
     });
 
-    document.getElementById("continue").addEventListener("click", function () {
-        allP.style.display = "flex";
-        document.getElementById("popup").style.display = "none";
-        player1 = Player.createPlayer();
-        player2 = Player.createPlayer();
-        currentPlayer = player1;
+    document.getElementById("exitItems1").addEventListener("click", function () {
         updateUI();
+    });
+
+    document.getElementById("exitItems2").addEventListener("click", function () {
+        updateUI();
+    });
+
+    document.getElementById("btnRematch").addEventListener("click", function () {
+        window.location.reload();
     });
 };
