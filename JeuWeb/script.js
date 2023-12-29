@@ -1,9 +1,9 @@
-var allP = document.querySelector(".player");
-allP.style.display = "none";
+const allPlayers = document.querySelector(".player");
+allPlayers.style.display = "none";
 
-var currentPlayer;
-var player1;
-var player2;
+let currentPlayer;
+let player1;
+let player2;
 
 class Player {
     constructor(name) {
@@ -14,11 +14,10 @@ class Player {
         this.defending = false;
         this.dpsRate = 1;
         this.inventory = { "Potions": 1, "Epee": 1 };
-        this.elementClass = "";
     }
 
     static createPlayer() {
-        var playerName = prompt("Entrez le nom du joueur:");
+        const playerName = prompt("Entrez le nom du joueur:");
         return new Player(playerName);
     }
 
@@ -30,6 +29,7 @@ class Player {
         if (this.coins >= cost) {
             this.coins -= cost;
             this.inventory[item] += 1;
+            updateUI();
             return true;
         }
         return false;
@@ -40,8 +40,6 @@ class Player {
             this.inventory[item] -= 1;
             if (item === "Potions") {
                 target.heal(20);
-            } else if (item === "Epee") {
-                target.dpsRate = 2;
             }
             this.updateInventoryUI();
             updateUI();
@@ -51,35 +49,33 @@ class Player {
     }
 
     attack(target) {
-        if (target.defending === false) {
-            var damage = this.randomAttack() * this.dpsRate;
-            target.receiveDamage(damage);
-            this.addCoins(15);
+        if (target.defending) {
+            target.defending = false;
         } else {
+            const damage = this.randomAttack() * this.dpsRate;
+            target.receiveDamage(damage);
             this.addCoins(10);
         }
+        this.checkEndGame();
+    }
 
+    receiveDamage(damage) {
+        if (!this.defending) {
+            this.hp -= damage;
+            if (this.hp < 0) {
+                this.hp = 0;
+            }
+        } else {
+            this.coins += 20;
+            this.defending = false;
+        }
         this.checkEndGame();
     }
 
     defend() {
         this.defending = true;
         this.addCoins(5);
-    }
-
-    receiveDamage(damage) {
-        if (this.defending) {
-            this.coins += 20;
-            this.defending = false;
-        } else {
-            this.hp -= damage;
-        }
-
-        if (this.hp < 0) {
-            this.hp = 0;
-        }
-
-        this.checkEndGame();
+        updateUI();
     }
 
     heal(amount) {
@@ -100,56 +96,75 @@ class Player {
     }
 
     showInventory() {
-        var previousMenu = document.getElementById("action" + (player1 === currentPlayer ? 1 : 2));
+        const previousMenu = document.getElementById("action" + (player1 === currentPlayer ? 1 : 2));
         previousMenu.style.display = "none";
-        var newMenu = document.getElementById("inventoryPlayer" + (player1 === currentPlayer ? 1 : 2));
+        const newMenu = document.getElementById("inventoryPlayer" + (player1 === currentPlayer ? 1 : 2));
         newMenu.style.display = "flex";
     }
 
     switchTurn() {
         currentPlayer = currentPlayer === player1 ? player2 : player1;
-        currentPlayer.defending = false;
+        switchShopDisplay(currentPlayer);
         if (currentPlayer.dpsRate > 1) {
             currentPlayer.dpsRate = 1;
         }
+        setTimeout(() => {
+            resetAnimations();
+            switchShopDisplay()
+        }, 1000);
     }
 
     updateInventoryUI() {
-        var potionsCountElement = document.getElementById(`potionsCount${currentPlayer === player1 ? 1 : 2}`);
-        var epeeCountElement = document.getElementById(`epeeCount${currentPlayer === player1 ? 1 : 2}`);
+        const potionsCountElement = document.getElementById(`potionsCount${currentPlayer === player1 ? 1 : 2}`);
+        const epeeCountElement = document.getElementById(`epeeCount${currentPlayer === player1 ? 1 : 2}`);
         potionsCountElement.textContent = currentPlayer.inventory["Potions"];
         epeeCountElement.textContent = currentPlayer.inventory["Epee"];
     }
 
     checkEndGame() {
         if (this.hp <= 0) {
-            // document.getElementById("background-video").pause();
-            // document.getElementById("audioPlayer").pause();
-            allP.style.display = "none";
+            allPlayers.style.display = "none";
             document.getElementById("popupTitle").textContent = `${this.name} a succombé !`;
             document.getElementById("popup").style.display = "flex";
         }
     }
+}
 
+function switchShopDisplay() {
+    if (currentPlayer === player1) {
+        document.getElementById('shop1').style.display = 'block';
+        document.getElementById('shop2').style.display = 'none';
+    } else {
+        document.getElementById('shop1').style.display = 'none';
+        document.getElementById('shop2').style.display = 'block';
+    }
+}
 
+function resetAnimations() {
+    const models = [document.getElementById("playerModel1"), document.getElementById("playerModel2")];
+    models.forEach(model => {
+        if (model) {
+            model.classList.remove("hit1", "hit2", "shake", "hitedShield", "drinked", "shielded");
+        }
+    });
 }
 
 function updateUI() {
-    var hpPlayer1Element = document.getElementById("hpPlayer1");
-    var coinsPlayer1Element = document.getElementById("coinsPlayer1");
-    var hpPlayer2Element = document.getElementById("hpPlayer2");
-    var coinsPlayer2Element = document.getElementById("coinsPlayer2");
+    const hpPlayer1Element = document.getElementById("hpPlayer1");
+    const coinsPlayer1Element = document.getElementById("coinsPlayer1");
+    const hpPlayer2Element = document.getElementById("hpPlayer2");
+    const coinsPlayer2Element = document.getElementById("coinsPlayer2");
 
     hpPlayer1Element.textContent = `${player1.hp}/100❤️`;
     coinsPlayer1Element.textContent = `${player1.coins}🪙`;
     hpPlayer2Element.textContent = `${player2.hp}/100❤️`;
     coinsPlayer2Element.textContent = `${player2.coins}🪙`;
 
-    var action1Element = document.getElementById("action1");
-    var action2Element = document.getElementById("action2");
+    const action1Element = document.getElementById("action1");
+    const action2Element = document.getElementById("action2");
 
-    var inventoryPlayer1 = document.getElementById("inventoryPlayer1");
-    var inventoryPlayer2 = document.getElementById("inventoryPlayer2");
+    const inventoryPlayer1 = document.getElementById("inventoryPlayer1");
+    const inventoryPlayer2 = document.getElementById("inventoryPlayer2");
     inventoryPlayer1.style.display = "none";
     inventoryPlayer2.style.display = "none";
 
@@ -164,88 +179,63 @@ window.onload = function () {
     player2 = Player.createPlayer();
     currentPlayer = player1;
 
-    allP.style.display = "flex";
-    var title = document.querySelector("#title");
+    allPlayers.style.display = "flex";
+    const title = document.querySelector("#title");
     title.style.display = "none";
-    var playerName1Element = document.getElementById("playerName1");
-    var playerName2Element = document.getElementById("playerName2");
+    const playerName1Element = document.getElementById("playerName1");
+    const playerName2Element = document.getElementById("playerName2");
 
     playerName1Element.textContent = player1.name;
     playerName2Element.textContent = player2.name;
     updateUI();
+    resetAnimations();
+    switchShopDisplay();
 
     document.getElementById("attack1").addEventListener("click", function () {
-        player1.attack(player2);
         currentPlayer.switchTurn();
-        updateUI();
         document.getElementById("playerModel1").classList.add("hit1");
-        setTimeout(() => {
-            document.getElementById("playerModel1").classList.remove("hit1");
-        }, 500);
-        if (player2.defending == false){
-            setTimeout(() => {
-                document.getElementById("playerModel2").classList.add("shake");
-            }, 600);
-            setTimeout(() => {
-                document.getElementById("playerModel2").classList.remove("shake");
-            }, 500);
-        }else{
-            setTimeout(() => {
-                document.getElementById("playerModel2").classList.add("hitedShield");
-            }, 600);
-            setTimeout(() => {
-                document.getElementById("playerModel2").classList.remove("shake");
-            }, 500);
+
+        if (player2.defending === false) {
+            document.getElementById("playerModel2").classList.add("shake");
+        } else {
+            document.getElementById("playerModel2").classList.add("hitedShield");
         }
-
-        
-
-        
-        
-    });
-    
-    document.getElementById("attack2").addEventListener("click", function () {
-        player2.attack(player1);
-        currentPlayer.switchTurn();
+        player1.attack(player2);
         updateUI();
-        document.getElementById("playerModel2").classList.add("hit2");
-        setTimeout(() => {
-            document.getElementById("playerModel2").classList.remove("hit2");
-        }, 500);
-
-        setTimeout(() => {
-            document.getElementById("playerModel1").classList.add("shake");
-        }, 600);
-        setTimeout(() => {
-            document.getElementById("playerModel1").classList.remove("shake");
-        }, 500);
     });
-    
+
+    document.getElementById("attack2").addEventListener("click", function () {
+        currentPlayer.switchTurn();
+        document.getElementById("playerModel2").classList.add("hit2");
+
+        if (player1.defending === false) {
+            document.getElementById("playerModel1").classList.add("shake");
+        } else {
+            document.getElementById("playerModel1").classList.add("hitedShield");
+        }
+        player2.attack(player1);
+        updateUI();
+    });
+
     document.getElementById("defend1").addEventListener("click", function () {
-        player1.defend();
         currentPlayer.switchTurn();
         updateUI();
         document.getElementById("playerModel1").classList.add("shielded");
-        setTimeout(() => {
-            document.getElementById("playerModel1").classList.remove("shielded");
-        }, 500);
+        player1.defend();
     });
-    
+
     document.getElementById("defend2").addEventListener("click", function () {
-        player2.defend();
         currentPlayer.switchTurn();
         updateUI();
-        document.getElementById("playerMode2").classList.add("shielded");
-        setTimeout(() => {
-            document.getElementById("playerModel2").classList.remove("shielded");
-        }, 500);
+        document.getElementById("playerModel2").classList.add("shielded");
+        player2.defend();
     });
 
     document.getElementById("items1").addEventListener("click", function () {
         player1.showInventory();
         player1.updateInventoryUI();
-        var potionButtons = document.getElementsByClassName("potions");
-        for (var i = 0; i < potionButtons.length; i++) {
+        const potionButtons = document.getElementsByClassName("potions");
+        for (let i = 0; i < potionButtons.length; i++) {
             potionButtons[i].addEventListener("click", function () {
                 player1.useItem("Potions", player1);
                 document.getElementById("playerModel1").classList.add("drinked");
@@ -255,15 +245,14 @@ window.onload = function () {
             });
         }
 
-        var epeeButtons = document.getElementsByClassName("Epée");
-        for (var i = 0; i < epeeButtons.length; i++) {
+        const epeeButtons = document.getElementsByClassName("Epée");
+        for (let i = 0; i < epeeButtons.length; i++) {
             epeeButtons[i].addEventListener("click", function () {
                 player1.useItem("Epee", player1);
                 document.getElementById("playerModel1").classList.add("shielded");
                 setTimeout(() => {
                     document.getElementById("playerModel1").classList.remove("shielded");
                 }, 500);
-
             });
         }
     });
@@ -271,8 +260,8 @@ window.onload = function () {
     document.getElementById("items2").addEventListener("click", function () {
         player2.showInventory();
         player2.updateInventoryUI();
-        var potionButtons = document.getElementsByClassName("potions");
-        for (var i = 0; i < potionButtons.length; i++) {
+        const potionButtons = document.getElementsByClassName("potions");
+        for (let i = 0; i < potionButtons.length; i++) {
             potionButtons[i].addEventListener("click", function () {
                 player2.useItem("Potions", player2);
                 document.getElementById("playerModel2").classList.add("drinked");
@@ -281,8 +270,9 @@ window.onload = function () {
                 }, 500);
             });
         }
-        var epeeButtons = document.getElementsByClassName("Epée");
-        for (var i = 0; i < epeeButtons.length; i++) {
+
+        const epeeButtons = document.getElementsByClassName("Epée");
+        for (let i = 0; i < epeeButtons.length; i++) {
             epeeButtons[i].addEventListener("click", function () {
                 player2.useItem("Epee", player2);
                 document.getElementById("playerModel2").classList.add("shielded");
@@ -303,5 +293,18 @@ window.onload = function () {
 
     document.getElementById("btnRematch").addEventListener("click", function () {
         window.location.reload();
+    });
+    document.getElementById("buyPotion1").addEventListener("click", function() {
+        player1.buyItem("Potions", 20);
+    });
+    document.getElementById("buyEpee1").addEventListener("click", function() {
+        player1.buyItem("Epee", 50);
+    });
+
+    document.getElementById("buyPotion2").addEventListener("click", function() {
+        player2.buyItem("Potions", 20);
+    });
+    document.getElementById("buyEpee2").addEventListener("click", function() {
+        player2.buyItem("Epee", 50);
     });
 };
